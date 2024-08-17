@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# To-Do Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple To-Do application built with React and Bootstrap. The app allows users to add, search, toggle, and delete tasks. All tasks are stored in localStorage, ensuring they persist even after refreshing the browser.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Add Todos**: Create new to-dos with a title, description, and optional labels.
+- **Search Todos**: Search for to-dos based on labels.
+- **Toggle Todos**: Mark to-dos as completed or not completed.
+- **Delete Todos**: Remove unwanted to-dos.
+- **Persistent Storage**: The app uses `localStorage` to store the to-dos, so your data remains even after refreshing or closing the app.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React.js**: The core library used to build the application.
+- **Bootstrap**: Used for styling the form and UI components.
+- **UUID**: Used for generating unique IDs for each to-do item.
+- **localStorage**: Used for persisting to-dos across page reloads.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+To set up this project locally, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository**:
 
-### `npm run build`
+    ```bash
+    git clone https://github.com/masudiharikrishna/todos-application.git
+    cd todo-application
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Ensure you have [Node.js](https://nodejs.org/) installed. Then, in the project directory, run:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    npm install
+    ```
 
-### `npm run eject`
+3. **Start the development server**:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    Run the following command to start the React development server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm start
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    This will launch the app in your default browser at `http://localhost:3000`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+### Adding a Todo
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Fill out the **Title**, **Description**, and **Labels** in the form.
+- Click **Add Todo** to create a new task.
+- If the Title or Description fields are empty, an error message will be shown.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Searching Todos
 
-### Code Splitting
+- Use the search bar to filter todos by their labels. The search is case-insensitive.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Toggling a Todo
 
-### Analyzing the Bundle Size
+- Click on a to-do item to toggle its completed status.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Deleting a Todo
 
-### Making a Progressive Web App
+- Click the **Delete** button next to a to-do item to remove it from the list.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Persistent Storage
 
-### Advanced Configuration
+- All to-do items are saved in the browser's `localStorage`. This ensures that the to-dos persist even after the page is refreshed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Code Explanation
 
-### Deployment
+### State Management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The main state for the application is managed in the `Homepage` component. The state includes:
 
-### `npm run build` fails to minify
+- `title`: The title of the to-do item.
+- `text`: The description of the to-do item.
+- `label`: The labels associated with the to-do item.
+- `todoList`: The list of all to-dos.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Components
+
+- `Homepage`: The main container for the application logic and rendering.
+- `TodoItem`: A child component responsible for displaying individual to-do items and handling toggle and delete actions.
+
+### Adding Todos
+
+The `addtodo` method creates a new to-do item if both the title and description are filled. If not, an error message is displayed. The new item is pushed into the `todoList` state.
+
+### Search Functionality
+
+The `filteredTodos` variable filters the `todoList` based on the search input. It checks if any of the labels in a to-do item match the search query.
+
+### Local Storage
+
+The `componentDidMount` method retrieves the to-dos from `localStorage`, and `componentDidUpdate` saves the updated `todoList` to `localStorage` whenever there is a change.
+
+## Future Enhancements
+
+Some possible improvements could include:
+
+- Adding more features like due dates and priority levels for each to-do.
+- Sorting to-dos based on completion, priority, or due date.
+- Adding user authentication and cloud storage for syncing tasks across devices.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+This `README.md` gives a comprehensive overview of your application, including its features, installation instructions, usage, and code structure.
